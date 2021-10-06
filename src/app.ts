@@ -6,8 +6,8 @@ dotenv.config();
 
 const app = express();
 
-app.use("/api/v1/todos", todoRouter);
 app.use(express.json());
+app.use("/api/v1/todos", todoRouter);
 
 async function main(): Promise<void> {
   const PORT: string | number = process.env.PORT || 3000;
