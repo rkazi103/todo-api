@@ -36,8 +36,25 @@ const getTodo = async (
   }
 };
 
-const updateTodo = (req: Request, res: Response) => {
-  res.send("update a todo");
+const updateTodo = async (
+  req: Request,
+  res: Response
+): Promise<Response<any, Record<string, any>> | undefined> => {
+  try {
+    const { id: todoId } = req.params;
+
+    const todo = await Todo.findOneAndUpdate({ _id: todoId }, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!todo)
+      return res.status(404).json({ msg: `No task with id ${todoId}` });
+
+    res.status(200).json({ todo });
+  } catch (error) {
+    res.status(500).json({ msg: error });
+  }
 };
 
 const deleteTodo = async (

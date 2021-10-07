@@ -15,8 +15,8 @@ async function main(): Promise<void> {
   try {
     await connectToDatabase(process.env.DB_URI as string);
     app.listen(PORT, (): void => console.log(`Server running on port ${PORT}`));
-  } catch (err) {
-    console.log(`Error! ${err}`);
+  } catch (error) {
+    console.log(`Error! ${error}`);
   }
 }
 

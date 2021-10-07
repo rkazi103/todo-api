@@ -1,8 +1,10 @@
 import mongoose from "mongoose";
 
-export default function connectToDatabase(url: string): Promise<void> {
-  return mongoose
-    .connect(url)
-    .then(() => console.log("DB Connected"))
-    .catch((err) => console.error(`Error trying to connect to: ${err}`));
+export default async function connectToDatabase(url: string): Promise<void> {
+  try {
+    await mongoose.connect(url);
+    return console.log("DB Connected");
+  } catch (err) {
+    return console.error(`Error trying to connect to: ${err}`);
+  }
 }
