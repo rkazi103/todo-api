@@ -1,10 +1,5 @@
 import { NextFunction, Request, RequestHandler, Response } from "express";
 
-/**
- *
- * @param {Function} fn The express function that needs to be wrapped
- * @returns {Function} The express function fully wrapped
- */
 export default function asyncWrapper(
   fn: (
     req: Request,
